@@ -13,34 +13,70 @@
 </head>
 
 <body>
+    <!-- Modal Form-->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+
+                <div class="modal-body">
+                    Her şeyi silmek istediğinden emin misin?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Kapat</button>
+                    <button onclick="clearAllItems()" type="button" data-dismiss="modal"
+                        class="btn btn-danger">Sil</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal Form -->
     <div class="jumbotron">
         <h1 class="display-4 text-center">Todo App!</h1>
     </div>
 
     <div class="container">
         <div class="row justify-content-md-center">
-            <div class="col-6">
-                <form id="todoInput" class="input mb-3">
+            <div class="wrapper bg-light col-6 shadow p-3 mb-5 bg-white rounded">
+                <form id="todoInput" class="input mt-3 mb-3">
                     <input type="text" class="form-control">
                 </form>
-                <div class="todoListContext">
-                    <ul>
-                        <li>
-                            Düzenle
-                        </li>
-                        <li>
-                            Sil
-                        </li>
+                <div style="position:relative;">
+                    <div id="contextMenu" class="context-menu">
+                        <ul class="menu">
+                            <li id="rename" class="rename"><a href="#"><i class="fa fa-pencil"
+                                        aria-hidden="true"></i>Değiştir</a></li>
+                            </li>
+                            <li id="delete" class="trash"><a href="#"><i class="fa fa-trash"
+                                        aria-hidden="true"></i>Sil</a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <ul id="todoList" class="list-group">
+
                     </ul>
+
+                    <div id="noFileItem" style="height: 200px; user-select: none;"
+                        class="d-flex flex-column justify-content-center align-items-center">
+                        <img width="100px"
+                            src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/GNOME_Todo_icon_2019.svg/1024px-GNOME_Todo_icon_2019.svg.png"
+                            alt="" srcset="">
+                        <h5 class="mt-3"><a href="#" onclick="newTodoClick()" class="badge badge-light">Görev gir</a>
+                        </h5>
+                    </div>
+
+                    <hr>
+
+                    <button id="deleteAll" type="button" class="mb-3 btn btn-danger" data-toggle="modal"
+                        data-target="#exampleModal">Her şeyi
+                        sil</button>
                 </div>
-                <ul id="todoList" class="list-group">
-                    <li class="list-group-item">Cras justo odio</li>
-                </ul>
             </div>
         </div>
     </div>
 
-    <script src="script.js"></script>
+    <script async src="script.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.min.js"></script>
