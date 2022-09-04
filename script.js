@@ -35,7 +35,7 @@ todoInputForm.addEventListener("submit", e => {
     if (todoInput.value.trim()) {
         itemsArray.push(todoInput.value);
         localStorage.setItem('items', JSON.stringify(itemsArray));
-        liMaker(todoInput.value);
+        liMaker(todoInput.value.trim());
         contextMenu.style.display = "none";
     }
     else {
@@ -64,6 +64,18 @@ document.addEventListener("click", (e) => {
     }
 })
 
+//İş Çizme
+todoListDOM.addEventListener("click", (e) => {
+    e.target.classList.toggle("marked");
+    /* let todoText = e.target.innerHTML;
+    if (todoText.includes("*markedjob*")) {
+        e.target.innerHTML = todoText.replace("*markedjob*", "")
+    }
+    else {
+        e.target.innerHTML = `*markedjob*${todoText}`
+    } */
+})
+
 //Silme butonu
 deleteContextBtn.addEventListener("click", () => {
     localStorage.removeItem("items", "1")
@@ -81,8 +93,14 @@ renameContextBtn.addEventListener("click", () => {
     renameinputDOM = document.querySelector("#renameİnput");
     renameinputDOM.addEventListener("keypress", (e) => {
         if (e.keyCode == 13) {
-            clickedLi.innerHTML = renameinputDOM.value;
-            refreshLocalStorage();
+            if (renameinputDOM.value.trim()) {
+                clickedLi.innerHTML = renameinputDOM.value.trim();
+                refreshLocalStorage();
+            }
+            else {
+                console.log("lütfen veri girişi sağlayın");
+                renameinputDOM.value = "";
+            }
         }
     })
     contextMenu.style.display = "none";
@@ -126,4 +144,5 @@ function checkItems() {
         noFileSection.classList.replace("d-none", "d-flex");
     }
 }
+
 checkItems();

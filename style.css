@@ -1,14 +1,8 @@
-.wrapper {
-    background-image: url("https://img.freepik.com/free-vector/white-abstract-background_23-2148810113.jpg?w=1380&t=st=1662149152~exp=1662149752~hmac=a97f059a0afe523dc7fc0cbf55103e15ea9a26a756db026305361824fda8c537");
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-}
-
 #todoList :hover {
     background-color: rgba(31, 121, 255, 0.771);
     color: #fff;
     transition: all .25s;
+    cursor: pointer;
 }
 
 /* #todoList>li::after {
@@ -20,11 +14,19 @@
     right: 0;
     top: 0;
     bottom: 0;
-} */ 
+} */
 
 #todoList>li {
     position: relative;
     animation: liAnimation .3s;
+}
+
+#todoList>.marked {
+    background-color: yellowgreen;
+    color: #fff;
+    text-decoration: line-through;
+    text-decoration-thickness: 10%;
+    transition: all .4s;
 }
 
 @keyframes liAnimation {

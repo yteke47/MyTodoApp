@@ -37,8 +37,8 @@
 
     <div class="container">
         <div class="row justify-content-md-center">
-            <div class="wrapper bg-light col-6 shadow p-3 mb-5 bg-white rounded">
-                <form id="todoInput" class="input mt-3 mb-3">
+            <div class="wrapper bg-light col-6 shadow p-3 mb-5 bg-white rounded-lg">
+                <form id="todoInput" class="input mt-6 mb-3">
                     <input type="text" class="form-control">
                 </form>
                 <div style="position:relative;">
@@ -54,23 +54,25 @@
                     </div>
 
                     <ul id="todoList" class="list-group">
-
+                        
                     </ul>
 
                     <div id="noFileItem" style="height: 200px; user-select: none;"
                         class="d-flex flex-column justify-content-center align-items-center">
                         <img width="100px"
-                            src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/GNOME_Todo_icon_2019.svg/1024px-GNOME_Todo_icon_2019.svg.png"
-                            alt="" srcset="">
-                        <h5 class="mt-3"><a href="#" onclick="newTodoClick()" class="badge badge-light">Görev gir</a>
+                            src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/GNOME_Todo_icon_2019.svg/1024px-GNOME_Todo_icon_2019.svg.png">
+                        <h5 class="mt-3"><a href="#" onclick="newTodoClick()" class="badge badge-info">Görev gir</a>
                         </h5>
                     </div>
 
                     <hr>
 
-                    <button id="deleteAll" type="button" class="mb-3 btn btn-danger" data-toggle="modal"
-                        data-target="#exampleModal">Her şeyi
-                        sil</button>
+                    <div class="d-flex align-items-center justify-content-center">
+                        <button id="deleteAll" type="button" class="mb-6 btn btn-danger" data-toggle="modal"
+                            data-target="#exampleModal">Her şeyi
+                            sil</button>
+
+                    </div>
                 </div>
             </div>
         </div>
