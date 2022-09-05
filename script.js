@@ -16,7 +16,8 @@ localStorage.setItem('items', JSON.stringify(itemsArray));
 const data = JSON.parse(localStorage.getItem('items'));
 
 let clickedLi,
-    renameinputDOM;
+    renameinputDOM,
+    onRenameState = false;
 
 // li etiketi oluşturan bir fonksiyon, içeriğini text parametresi ile atıyoruz.
 let liMaker = text => {
@@ -36,7 +37,6 @@ todoInputForm.addEventListener("submit", e => {
         itemsArray.push(todoInput.value);
         localStorage.setItem('items', JSON.stringify(itemsArray));
         liMaker(todoInput.value.trim());
-        contextMenu.style.display = "none";
     }
     else {
         console.log("lütfen bilgi girişi sağlayın");
@@ -47,19 +47,29 @@ todoInputForm.addEventListener("submit", e => {
 
 //Sağ Tık Menu
 todoListDOM.addEventListener("contextmenu", (e) => {
-    e.preventDefault()
-    clickedLi = e.target;
-    let x = clickedLi.offsetWidth,
-        y = clickedLi.offsetTop;
-    contextMenu.style.left = `${x}px`;
-    contextMenu.style.top = `${y}px`;
-    contextMenu.style.display = "block";
+    if (onRenameState == true) {
+        e.preventDefault()
+        renameinputDOM.focus();
+        console.log("Ad değiştirme işlemini tamamlayın!");
+    }
+    else {
+        e.preventDefault()
+        clickedLi = e.target;
+        let x = clickedLi.offsetWidth,
+            y = clickedLi.offsetTop;
+        contextMenu.style.left = `${x}px`;
+        contextMenu.style.top = `${y}px`;
+        contextMenu.style.display = "block";
+    }
 })
 
 contextMenu.addEventListener("contextmenu", (e) => { e.preventDefault() })
 
 document.addEventListener("click", (e) => {
-    if (e.target.localName == "li" || e.target.localName == "html") {
+    if (e.target.localName == "html") {
+        contextMenu.style.display = "none";
+    }
+    else {
         contextMenu.style.display = "none";
     }
 })
@@ -80,7 +90,6 @@ todoListDOM.addEventListener("click", (e) => {
 deleteContextBtn.addEventListener("click", () => {
     localStorage.removeItem("items", "1")
     clickedLi.remove()
-    contextMenu.style.display = "none";
     refreshLocalStorage()
     checkItems();
 })
@@ -90,12 +99,14 @@ renameContextBtn.addEventListener("click", () => {
     let renameinput = parser.parseFromString(`<input placeholder="${clickedLi.innerHTML}" type="text" id="renameİnput" class="form-control">`, "text/html");
     clickedLi.innerHTML = ""
     clickedLi.appendChild(renameinput.body.firstChild);
+    onRenameState = true;
     renameinputDOM = document.querySelector("#renameİnput");
     renameinputDOM.addEventListener("keypress", (e) => {
         if (e.keyCode == 13) {
             if (renameinputDOM.value.trim()) {
                 clickedLi.innerHTML = renameinputDOM.value.trim();
                 refreshLocalStorage();
+                onRenameState = false;
             }
             else {
                 console.log("lütfen veri girişi sağlayın");
@@ -103,7 +114,6 @@ renameContextBtn.addEventListener("click", () => {
             }
         }
     })
-    contextMenu.style.display = "none";
 })
 
 //İlk sayfaya girişte local storage'da yer alan verilerle listeyi yenile
@@ -119,7 +129,6 @@ function clearAllItems() {
         element.remove();
     });
     todoInput.value = ""
-    contextMenu.style.display = "none";
     checkItems();
 }
 
