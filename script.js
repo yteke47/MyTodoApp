@@ -86,6 +86,8 @@ todoListDOM.addEventListener("click", (e) => {
     } */
 })
 
+//-Context Menu Button
+
 //Silme butonu
 deleteContextBtn.addEventListener("click", () => {
     localStorage.removeItem("items", "1")
@@ -123,6 +125,7 @@ data.forEach(item => {
 
 //Her şeyi sil
 function clearAllItems() {
+    onRenameState = "false";
     localStorage.clear()
     itemsArray = [];
     document.querySelectorAll("#todoList > li").forEach(element => {
