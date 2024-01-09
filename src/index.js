@@ -1,6 +1,9 @@
+import './style.css';
+
 const
     parser = new DOMParser(),
     todoListDOM = document.querySelector("#todoList"),
+    deleteAllTodosBtn = document.querySelector("#deleteAllTodos"),
     todoList = document.querySelector("#todoList > li"),
     todoInputForm = document.querySelector("#todoInput"),
     todoInput = document.querySelector("#todoInput > input"),
@@ -10,6 +13,7 @@ const
     clearBtn = document.querySelector("#clearBtn"),
     deleteAllBtn = document.querySelector("#deleteAll"),
     noFileSection = document.querySelector("#noFileItem");
+
 
 let itemsArray = localStorage.getItem('items') ? JSON.parse(localStorage.getItem('items')) : [];
 localStorage.setItem('items', JSON.stringify(itemsArray));
@@ -124,7 +128,7 @@ data.forEach(item => {
 });
 
 //Her şeyi sil
-function clearAllItems() {
+deleteAllTodosBtn.addEventListener("click", () => {
     onRenameState = "false";
     localStorage.clear()
     itemsArray = [];
@@ -133,7 +137,7 @@ function clearAllItems() {
     });
     todoInput.value = ""
     checkItems();
-}
+})
 
 //Local storage da yer alan verileri güncelleme fonksiyonu
 function refreshLocalStorage() {

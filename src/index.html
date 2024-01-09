@@ -8,7 +8,6 @@
     <meta name="Description" content="Enter your description here" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <link rel="stylesheet" href="style.css">
     <title>Todo App</title>
 </head>
 
@@ -24,8 +23,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Kapat</button>
-                    <button onclick="clearAllItems()" type="button" data-dismiss="modal"
-                        class="btn btn-danger">Sil</button>
+                    <button id="deleteAllTodos" type="button" data-dismiss="modal" class="btn btn-danger">Sil</button>
                 </div>
             </div>
         </div>
@@ -78,7 +76,6 @@
         </div>
     </div>
 
-    <script async src="script.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.min.js"></script>
